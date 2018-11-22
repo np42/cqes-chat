@@ -1,0 +1,20 @@
+{ "compilerOptions":
+  { "module": "commonjs"
+  , "moduleResolution": "node"
+  , "lib": ["es5", "es6", "dom"]
+  , "target": "es6"
+  , "listEmittedFiles": true
+  , "noImplicitAny": true
+  , "removeComments": true
+  , "preserveConstEnums": true
+  , "allowUnreachableCode": true
+  , "suppressImplicitAnyIndexErrors": true
+  , "strictFunctionTypes": false
+  , "allowSyntheticDefaultImports": true
+  , "outDir": "lib/js"
+  , "rootDir": ""
+  , "sourceMap": true
+  }
+, "include": [ "srv" ]
+, "exclude": [ "node_modules", "**/*.spec.ts" ]
+}

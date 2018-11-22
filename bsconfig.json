@@ -1,0 +1,9 @@
+{
+  "name": "cqes-chat",
+  "refmt": 3,
+  "sources": {
+      "dir": "srv",
+      "subdirs": true
+  },
+  "bs-dependencies": ["@glennsl/bs-json", "cqes"]
+}

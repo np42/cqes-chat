@@ -1,0 +1,45 @@
+---
+
+Bus:
+  default: amqp://guest:guest@localhost/chat
+
+Service:
+  rootpath: ./lib/js/srv
+
+Process:
+  Chat:
+    services:
+
+      - type: Aggregator
+        name: Chat
+        Buffer: { size: 1 }
+        Repository:
+          table: 'chats'
+          connection:
+            connectionLimit:  1
+            host: 'localhost'
+            user: 'dev'
+            password: 'dev'
+            database: 'cqes-chat'
+
+      - type: Aggregator
+        name: Account
+        Buffer: { size: 1000 }
+        Repository:
+          table: 'accounts'
+          connection:
+            connectionLimit: 2
+            host: 'localhost'
+            user: 'dev'
+            password: 'dev'
+            database: 'cqes-chat'
+
+      - type: Gateway
+        name: API
+        Gateway:
+          ip: '0.0.0.0'
+          port: 1337
+          commands:
+            Account: ['Authenticate', 'VerifyPassword']
+          queries:
+            Chat: ['ListUsers']

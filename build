@@ -1,0 +1,20 @@
+
+rm -rf node_modules/cqes*
+rm -rf ../cqes/{lib,dist}
+(cd ../cqes; tsc)
+
+for dep in cqes-gw-http cqes-db-mysql
+do
+    (cd ../"$dep"; tsc) && (
+        cp -R ../"$dep" node_modules
+        rm -rf node_module/"$dep"/.git
+    ) && continue ;
+    exit -1
+done
+
+(
+    cp -R ../cqes node_modules
+    rm -rf node_modules/cqes/.git
+    bsb -make-world &&
+    tsc
+)
